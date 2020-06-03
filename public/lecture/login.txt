@@ -1,0 +1,15 @@
+    function login(Request $request)
+{
+    $email = $request->email;
+    $password = $request->password;
+    $student = Student::where('email', $email)->firstOrFail();
+    $doctor = Doctor::where('email', $email)->firstOrFail();
+    if(Hash::check($password, $student->password))
+    {
+    return response()->json([$student]);
+    }
+    elseif(Hash::check($password, $doctor->password))
+    {
+    return response()->json([$doctor]);
+    }
+}

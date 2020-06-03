@@ -1,0 +1,217 @@
+Backend using php FrameWork Laravel
+
+why laravel ?
+laravel is one the most ad best framework in building backend web pages
+and for laravel feture that we can make api,s for web and andriod applications
+Aslo for the MVC structor oof laravel that is for handeling the backend ,
+
+1) Authorization Technique: PHP framework:
+Laravel makes implementation of authentication techniques very simple.
+Almost everything isconfigured extraordinarily. Laravel also provides
+a simple way to organize authorization logic and control access to resources.
+
+2) Artisan:
+Laravel offers a build in tool named as Artisan.
+A developer has to usually interact with the Laravel framework using a command line that creates and handles the Laravel project environment.
+Laravel provides a built-in tool for command-line called Artisan.
+This tool allows us to perform the majority of those repetitive and tedious programming tasks that most of the developers avoid performing manually.
+
+3) MVC Support:
+Another reason which makes Laravel the best PHP framework is it supports MVC Architecture like Symfony,
+ensuring clarity between logic and presentation. 
+MVC  helps in improving the performance, allows better documentation,
+and has multiple built-in functionalities. Here’s how the MVC works for Laravel.
+
+4) Database Migration:
+One pain point for developers is to keep database in sync between development machines.
+With Laravel database migrations, it is extremely easy. After the long work hours,
+you may have made a lot of changes to the database and, in our option,
+MySQL Workbench is not a great way to sync databases between my development machines.
+Enter Migrations. As long as you keep all of the database work in migrations and seeds,
+you can easily migrate the changes into any other development machine you have.
+This is yet another reason which makes Laravel the best PHP framework.
+
+We Also Storing Database In phpMyAdmin
+
+what is phpMyAdmin:-
+phpMyAdmin is a free and open source administration tool for MySQL and MariaDB.
+As a portable web application written primarily in PHP,
+it has become one of the most popular MySQL administration tools,
+especially for web hosting services
+
+                                                                                                          (fe haga sora)->(PHPMYADMIN)
+
+what is Php?!
+PHP (Hypertext Preprocessor) is a general purpose programming language originally designed for web development.
+It may be executed with a command line interface(CLI), embedded into HTML code.
+It can be used in combination with various web template systems, web content management systems and web frameworks.
+
+What is Laravel?!
+Laravel is an open-source PHP framework, which is robust and easy to understand.
+It follows MVC design pattern. Laravel reuses the existing components of different frameworks which helps in creating a web application.
+The web application thus designed is more structured and pragmatic.
+
+How To start and the Recommended Tools..
+We recommend to install the PHP,
+Apache & MySQL together as a package By Using XAMPP
+
+what is XAMPP?
+XAMPP is a free and open-source cross-platform web server solution stack package developed by Apache Friends,
+consisting mainly of the Apache HTTP Server, MariaDB database, and interpreters for scripts written in the PHP and Perl programming language
+
+in oreder of using laravel we olso need Composer 
+Composer ?! :- Composer is an application-level package manager for the PHP programming language that provides a standard format for managing dependencies of PHP software and required libraries.
+ It was developed by Nils Adermann and Jordi Boggiano, who continue to manage the project
+
+
+what is MVC ?
+MVC is Model View Controller .
+laravel MVC Structure	
+
++-- app                      # Controllers and Models 
++-- bootstrap                # Contains cache and app.php
++-- config                   # Application's configuration files
++-- database                 # Migrations, model factories, & seeds
++-- public                   # index.php ,static folder & Build 
++-- resources                # Views and vue.js components
+  +-- js                     # Source Directory
+    +-- api                  # Include App APi
+    +-- assets               # Include App Assets and Styles
+    +-- auth                 # include Auth
+    +-- components           # Include App Components
+    +-- constants            # Include Constants
+    +-- container            # Include App Layouts
+    +-- firebase             # Firebase
+    +-- helpers              # Include helpers methods
+    +-- lang                 # Include app localize strings
+    +-- lib                  # Include app lib
+    +-- router               # Include app routes
+    +-- store                # vuex store
+    +-- themes               # Include App themes
+    +-- views                # Include App views
+    +-- App.vue              # App.vue
+    +-- globalComponents.js  # include global components
+    +-- index.js             # Entry point
+  +-- lang                   # Include Languages 
+  +-- scss                   # Include scss files
+  +-- views                  # Contain Blade templates
++-- routes                   # Include Routes Web.php 
++-- storage                  # Contains compile blade templates
++-- tests                    # For testing
++-- vendor                   # Composer Dependencies & autoload.php
++-- artisan                  # Include artisans commands
++-- composer.json            # Dependencies used by composer
++-- composer.lock            # A Composer file
++-- package.json             # Dependencies used by node
++-- package-lock.json        # Auto generated by package.json
++-- phpunit.xml              # Related With testing
++-- readme.md                # About laravel
++-- server.php               # For php's internal web server
++-- webpack.mix.js           # Laravel's webpack file
++-- .editorconfig            # Related with your editor
++-- .env.example             # Include Database credentials
++-- .gitattributes           # Give attributes to pathnames
++-- .gitignore               # Files which we shouldn't ignore 
+..
+
+in App\Http            , there will be Model for each Student,Doctor,Quiz,lecture,Attendence,event,chat
+.. Model that represnt each of o of them and build the relationships with other models
+   for example :-
+	    		public function quizs()
+					{
+					return $this->hasMany('App\Quiz');
+  			  		}
+
+   			 public function attendences()
+					{
+					return $this->hasMany('App\Attendence');
+   			 		}
+
+   			 public function courses()
+					{
+					return $this->belongsToMany('App\Course');
+    					}
+
+in App\Http\Controller , there will be Controller for each Student,Doctor,Quiz,lecture,Attendence,event,chat
+.. each Conntroller is for Control what we want for CRUD system and funcution for what we want spacifc to do
+   example for student Store function :-
+					    public function store(Request $request)
+    						{
+
+       						  $student = new Student;
+       						  $student->firstname = $request->input('firstname');
+      						  $student->lastname = $request->input('lastname');
+      						  $student->username = $request->input('username');
+      						  $student->card_id = $request->input('card_id');
+      						  $student->e_mail = $request->input('e_mail');
+     						  $student->password = $request->input('password');
+      						  $student->year_id = $request->input('year_id');
+      						  $student->course_id = $request->input('course_id');
+
+      						  $student->save();
+						}
+	
+
+in App\Http\Migrations, there will be Migration for each Student,Doctor,Quiz,lecture,Attendence,event,chat
+.. Migration for Create and Store our Database and the Stucture 
+   example for database Creation :-
+					        Schema::create('doctors', function (Blueprint $table) {
+            						$table->bigIncrements('id');
+            						$table->string('firstname');
+            						$table->string('lastname');
+            						$table->string('username');
+            						$table->integer('card_id');
+            						$table->string('e_mail');
+           						$table->string('password');
+            						$table->string('year_id');
+            						$table->integer('course_id');
+            						$table->rememberToken();
+            						$table->timestamps();
+        						});
+in Route\Api.php
+First what is Laravel Api`s
+Laravel already makes it easy to perform authentication via traditional login forms, but what about APIs?
+APIs typically use tokens to authenticate users and do not maintain session state between requests.
+Laravel makes API authentication a breeze using Laravel Passport, which provides a full OAuth2 server
+implementation for your Laravel application in a matter of minutes.
+Passport is built on top of the League OAuth2 server that is maintained by Andy Millington and Simon Hamp.
+And its the most importane for all as here we create out api,s and in route with the Controller that we want
+ example:-
+		// Post
+
+		// List Posts
+		Route::get('posts' , 'PostController@index');
+		// List Single Post
+		Route::get('post/{id}' , 'PostController@show');
+		// Create Post
+		Route::post('create/post' , 'PostController@store');
+		// update Post
+		Route::put('post' , 'PostController@store');
+		// Delete Post
+		Route::delete('post/{id}' , 'PostController@destroy');
+	
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+References
+https://laravel.com/docs/5.8
+https://www.wikipedia.org/
+https://stackoverflow.com/
+https://scotch.io/
+https://www.udemy.com/
+https://www.youtube.com/
+https://medium.com/
+
+Tools
+MVC
+Php , https://www.php.net/
+Laravel ,  https://laravel.com/
+Composer , https://getcomposer.org/
+Git , https://git-scm.com/
+Npm , https://www.npmjs.com/
+Visual , Studio Code https://code.visualstudio.com/
+XAMPP , https://www.apachefriends.org/index.html
+Postman , https://www.getpostman.com/
+
+Future Work 
+Api`s For [ Chat ,  Event , Activity , Notification ]
+
+
